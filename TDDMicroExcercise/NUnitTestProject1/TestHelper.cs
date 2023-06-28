@@ -27,7 +27,7 @@ namespace TDDMicroExcercise.Tests
             return new Alarm(_sensor, _pressureRange);
         }
 
-        public TestHelper WithSensorDetecting(double measure)
+        public TestHelper WithReadPressure(double measure)
         {
             var sensorMock = new Mock<ISensor>();
             sensorMock.Setup(s => s.MeasurePressure()).Returns(measure);
