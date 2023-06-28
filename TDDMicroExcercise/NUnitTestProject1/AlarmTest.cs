@@ -1,10 +1,14 @@
+using Moq;
 using NUnit.Framework;
+using TDDMicroExcercise.TirePressureMonitoringSystem.Contracts;
 using TDDMicroExercises.TirePressureMonitoringSystem;
 
-namespace NUnitTestProject1
+namespace TDDMicroExcercise.Tests
 {
     public class AlarmTest
     {
+        private ISensor _sensor;
+
         [Test]
         public void Test()
         {
@@ -12,18 +16,14 @@ namespace NUnitTestProject1
         }
 
         [Test]
-        public void CheckAlarm()
+        public void CheckAlarmIsOnWhenPressureIs22()
         {
-            var alarm = BuildAlarmClass();
-
+            var sensorMock = new Mock<ISensor>();
+            sensorMock.Setup(s => s.MeasurePressure()).Returns(22);
+            _sensor = sensorMock.Object;
+            var alarm = TestHelper.ObjectAlarm().BuildAlarmClass(_sensor);
             alarm.Check();
-
             Assert.AreEqual(true, alarm.AlarmOn);
-        }
-
-        public Alarm BuildAlarmClass()
-        {
-            return new Alarm();
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TirePressureMonitoringSystem\Alarm.cs" />
+    <Compile Include="TirePressureMonitoringSystem\Contracts\ISensor.cs" />
     <Compile Include="TirePressureMonitoringSystem\Sensor.cs" />
   </ItemGroup>
   <ItemGroup>

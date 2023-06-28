@@ -1,8 +1,9 @@
 using System;
+using TDDMicroExcercise.TirePressureMonitoringSystem.Contracts;
 
 namespace TDDMicroExercises.TirePressureMonitoringSystem
 {
-    public class Sensor
+    public class Sensor: ISensor
     {
         //
         // The reading of the pressure value from the sensor is simulated in this implementation.
@@ -12,7 +13,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
         const double Offset = 16;
         readonly Random _randomPressureSampleSimulator = new Random();
 
-        public double PopNextPressurePsiValue()
+        public double MeasurePressure()
         {
             double pressureTelemetryValue = ReadPressureSample();
 
