@@ -7,8 +7,6 @@ namespace TDDMicroExcercise.Tests
 {
     public class AlarmTest
     {
-        private ISensor _sensor;
-
         [Test]
         public void Test()
         {
@@ -16,10 +14,40 @@ namespace TDDMicroExcercise.Tests
         }
 
         [Test]
-        public void CheckAlarmIsOnWhenPressureIs22()
+        public void CheckAlarmIsOnWhenPressureIs10()
         {
-            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(22).SafetyRange(17,21).BuildAlarmClass();
+            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(10).SafetyRange(17,21).BuildAlarmClass();
             alarm.Check();
+            Assert.AreEqual(true, alarm.AlarmOn);
+        }
+
+        [Test]
+        public void CheckAlarmIsOnWhenPressureIs15()
+        {
+            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(15).SafetyRange(17, 21).BuildAlarmClass();
+
+            alarm.Check();
+
+            Assert.AreEqual(true, alarm.AlarmOn);
+        }
+
+        [Test]
+        public void CheckAlarmIsOnWhenPressureIs18()
+        {
+            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(18).SafetyRange(17, 21).BuildAlarmClass();
+
+            alarm.Check();
+
+            Assert.AreEqual(false, alarm.AlarmOn);
+        }
+
+        [Test]
+        public void CheckAlarmIsOnWhenPressureIs23()
+        {
+            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(23).SafetyRange(17, 21).BuildAlarmClass();
+
+            alarm.Check();
+
             Assert.AreEqual(true, alarm.AlarmOn);
         }
     }
