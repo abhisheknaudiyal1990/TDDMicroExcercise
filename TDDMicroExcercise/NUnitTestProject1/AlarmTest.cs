@@ -18,10 +18,7 @@ namespace TDDMicroExcercise.Tests
         [Test]
         public void CheckAlarmIsOnWhenPressureIs22()
         {
-            var sensorMock = new Mock<ISensor>();
-            sensorMock.Setup(s => s.MeasurePressure()).Returns(22);
-            _sensor = sensorMock.Object;
-            var alarm = TestHelper.ObjectAlarm().BuildAlarmClass(_sensor);
+            var alarm = TestHelper.ObjectAlarm().WithSensorDetecting(22).SafetyRange(17,21).BuildAlarmClass();
             alarm.Check();
             Assert.AreEqual(true, alarm.AlarmOn);
         }
